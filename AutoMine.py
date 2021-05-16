@@ -10,6 +10,7 @@
 from Scripts.glossary.items.ores import ores
 from Scripts.glossary.colors import colors
 from Scripts import config
+import sys
 
 # Variabili utente
 RuneBookOre1 = 0x42047AEC           # Runebook for ore 1
@@ -156,7 +157,7 @@ def Organize():
     
 def End():
     Player.HeadMessage(77, "Shutting down and thanks for all the fish")
-    Exit()
+    sys.Exit()
     
 def Smelt():
     rune = 5
