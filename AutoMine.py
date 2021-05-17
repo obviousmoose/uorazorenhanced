@@ -7,6 +7,7 @@
 ###
 
 # Parametri
+from Scripts.utilities.items import FindItem
 from Scripts.glossary.items.ores import ores
 from Scripts.glossary.colors import colors
 from Scripts import config
@@ -148,6 +149,9 @@ def Mine():
     RecallNextSpot()
 
 def Organize():
+    #
+    # Moves ore from the main backpack to the designated resource bag
+    #
     for ore in ores:
         oreStack = Items.FindByID( ores[ ore ].itemID, -1, Player.Backpack.Serial )
         while oreStack != None:
@@ -156,10 +160,18 @@ def Organize():
             oreStack = Items.FindByID( ores[ ore ].itemID, -1, Player.Backpack.Serial )
     
 def End():
+    #
+    # Exits the script, which would otherwise loop infinitely
+    #
     Player.HeadMessage(77, "Shutting down and thanks for all the fish")
-    sys.Exit()
+    sys.exit
     
 def Smelt():
+    #
+    # Recalls to the designated forge, smelts all ore, then runs the warehouser
+    # WARNING: If the pile of ore is too large, the ingots may fall to your feet
+    # (Will eventually fix that so it will pick those up too...)
+    #
     rune = 5
     count = forgerune
     while count > 1 :
